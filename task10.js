@@ -1,26 +1,24 @@
 function checkBrackets(str) {
     const stack = [];
-    const openingBrackets = ['(', '[', '{'];
-    const closingBrackets = [')', ']', '}'];
+    const bracketsMap = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    };
 
     for (let char of str) {
-        if (openingBrackets.includes(char)) {
-            stack.push(char);
-        } else if (closingBrackets.includes(char)) {
+        if (bracketsMap[char]) {
             const lastOpeningBracket = stack.pop();
-            if (!lastOpeningBracket) {
+            if (lastOpeningBracket !== bracketsMap[char]) {
                 return false;
             }
-            const matchingOpeningBracket = openingBrackets[closingBrackets.indexOf(char)];
-            if (lastOpeningBracket !== matchingOpeningBracket) {
-                return false;
-            }
+        } else if (char === '(' || char === '[' || char === '{') {
+            stack.push(char);
         }
     }
 
     return stack.length === 0;
 }
-
 
 const test = "() => { console.log('Hello, World!'); }";
 console.log(checkBrackets(test));

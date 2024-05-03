@@ -7,11 +7,27 @@ const medicines = [
 ];
 
 const medicineNames = medicines.map(({ name }) => name);
-console.log("Масив лише з назвами препаратів:", medicineNames);
+console.log("Масив лише з назвами препаратів:", medicineNames.join(', '));
 
 const currentDate = new Date();
 const validMedicines = medicines.filter(({ expirationDate }) => expirationDate > currentDate);
-console.log("Медикаменти зі строком зберігання, які ще не минули:", validMedicines);
+console.log("Медикаменти зі строком зберігання, які ще не минули:");
+if (validMedicines.length > 0) {
+    validMedicines.forEach((medicine, index) => {
+        console.log(`${index + 1}. ${medicine.name} - ${medicine.expirationDate.toLocaleDateString()}`);
+    });
+} else {
+    console.log("Усі медикаменти минули строк придатності.");
+}
 
 validMedicines.sort((a, b) => a.expirationDate - b.expirationDate);
-console.log("Медикаменти у хронологічному порядку:", validMedicines);
+console.log("Медикаменти у хронологічному порядку:");
+if (validMedicines.length > 0) {
+    validMedicines.forEach((medicine, index) => {
+        console.log(`${index + 1}. ${medicine.name} - ${medicine.expirationDate.toLocaleDateString()}`);
+    });
+} else {
+    console.log("Усі медикаменти минули строк придатності.");
+}
+
+

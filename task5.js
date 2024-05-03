@@ -9,7 +9,6 @@ function applyDiscountAndId(fruits) {
     });
 }
 
-
 const fruits = [
     { name: "apple", price: 200 },
     { name: "orange", price: 300 },
@@ -17,4 +16,9 @@ const fruits = [
 ];
 
 const discountedFruits = applyDiscountAndId(fruits); 
-console.log(discountedFruits);
+discountedFruits.forEach(fruit => {
+    console.log("Name:", fruit.name);
+    console.log("Price:", fruit.price);
+    console.log("ID:", fruit.id);
+    console.log("--------");
+});
