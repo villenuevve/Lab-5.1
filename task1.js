@@ -1,24 +1,21 @@
+let counter = 1;
+
 function createProduct(obj, callback) {
     obj.id = getId();
     callback(obj);
 }
 
-let counter = 1;
-
 function getId() {
     return counter++;
 }
 
-const logProduct = (product) => { 
-    console.log(`Product: ${product}`);
-};
+createProduct(
+    { name: "Phone", price: 500, quantity: 2 },
+    product => console.log(`Product: ${product.name}, Price: ${product.price}, Quantity: ${product.quantity}`)
+);
 
-const logTotalPrice = (product) => {
-    const totalPrice = product.price * product.quantity; 
-    console.log(`Total Price: ${totalPrice}`);
-};
+createProduct(
+    { name: "Phone", price: 500, quantity: 2 },
+    product => console.log(`Total Price: ${product.price * product.quantity}`)
+);
 
-const product = { name: "Phone", price: 500, quantity: 2 };
-
-createProduct(product, logProduct);
-createProduct(product, logTotalPrice);
